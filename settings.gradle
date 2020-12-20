@@ -1,0 +1,2 @@
+include ':xupdate-easy'
+include ':app'
