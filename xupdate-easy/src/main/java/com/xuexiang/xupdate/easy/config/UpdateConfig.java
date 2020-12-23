@@ -19,6 +19,7 @@ package com.xuexiang.xupdate.easy.config;
 
 import androidx.annotation.NonNull;
 
+import com.xuexiang.xupdate.easy.service.IDownloadServiceProxy;
 import com.xuexiang.xupdate.listener.OnInstallListener;
 import com.xuexiang.xupdate.listener.OnUpdateFailureListener;
 import com.xuexiang.xupdate.proxy.IFileEncryptor;
@@ -106,6 +107,13 @@ public class UpdateConfig {
      * 更新出错监听
      */
     private OnUpdateFailureListener mOnUpdateFailureListener;
+
+    //========代理==========//
+
+    /**
+     * 下载服务代理，代理IUpdateHttpService中的下载功能
+     */
+    private IDownloadServiceProxy mDownloadServiceProxy;
 
     /**
      * 获取默认更新配置
@@ -255,7 +263,6 @@ public class UpdateConfig {
 
     //========全局更新实现接口==========//
 
-
     /**
      * 设置版本更新网络请求服务API
      *
@@ -366,6 +373,22 @@ public class UpdateConfig {
 
     public OnUpdateFailureListener getOnUpdateFailureListener() {
         return mOnUpdateFailureListener;
+    }
+
+    //========代理==========//
+
+    /**
+     * 设置下载服务代理
+     *
+     * @param downloadServiceProxy 下载服务代理
+     */
+    public UpdateConfig setDownloadServiceProxy(IDownloadServiceProxy downloadServiceProxy) {
+        mDownloadServiceProxy = downloadServiceProxy;
+        return this;
+    }
+
+    public IDownloadServiceProxy getDownloadServiceProxy() {
+        return mDownloadServiceProxy;
     }
 
     @NonNull

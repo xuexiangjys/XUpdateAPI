@@ -27,7 +27,8 @@ import com.xuexiang.xupdate.XUpdate;
 import com.xuexiang.xupdate.easy.config.DefaultUpdateConfigProvider;
 import com.xuexiang.xupdate.easy.config.IUpdateConfigProvider;
 import com.xuexiang.xupdate.easy.config.UpdateConfig;
-import com.xuexiang.xupdate.easy.init.OkHttpUpdateHttpServiceImpl;
+import com.xuexiang.xupdate.easy.service.IDownloadServiceProxy;
+import com.xuexiang.xupdate.easy.service.OkHttpUpdateHttpServiceImpl;
 import com.xuexiang.xupdate.entity.UpdateEntity;
 
 /**
@@ -39,6 +40,10 @@ import com.xuexiang.xupdate.entity.UpdateEntity;
 public final class EasyUpdate {
 
     private static IUpdateConfigProvider sUpdateConfigProvider;
+
+    private EasyUpdate() {
+        throw new UnsupportedOperationException("u can't instantiate me...");
+    }
 
     /**
      * 设置更新配置提供者
@@ -62,6 +67,8 @@ public final class EasyUpdate {
         return EasyUpdate.sUpdateConfigProvider.getUpdateConfig(context);
     }
 
+    //=============初始化==================//
+
     /**
      * 初始化
      *
@@ -83,7 +90,7 @@ public final class EasyUpdate {
                 .isWifiOnly(updateConfig.isWifiOnly())
                 .isGet(updateConfig.isGet())
                 .params(updateConfig.getParams())
-                .setIUpdateHttpService(new OkHttpUpdateHttpServiceImpl(updateConfig.getTimeout(), updateConfig.isPostJson()))
+                .setIUpdateHttpService(new OkHttpUpdateHttpServiceImpl(updateConfig.getTimeout(), updateConfig.isPostJson(), updateConfig.getDownloadServiceProxy()))
                 .isAutoMode(updateConfig.isAutoMode())
                 .supportSilentInstall(updateConfig.isSupportSilentInstall())
                 .init(context);
@@ -113,6 +120,30 @@ public final class EasyUpdate {
             XUpdate.get().setOnUpdateFailureListener(updateConfig.getOnUpdateFailureListener());
         }
     }
+
+    /**
+     * 开启下载代理功能【可实现断点续传下载】
+     *
+     * @param context 上下文
+     * @param proxy   下载服务代理
+     */
+    public static void enableDownloadProxy(Context context, IDownloadServiceProxy proxy) {
+        UpdateConfig config = EasyUpdate.getUpdateConfig(context);
+        XUpdate.get().setIUpdateHttpService(new OkHttpUpdateHttpServiceImpl(config.getTimeout(), config.isPostJson(), proxy));
+    }
+
+    /**
+     * 禁止下载代理功能
+     *
+     * @param context 上下文
+     */
+    public static void disableDownloadProxy(Context context) {
+        UpdateConfig config = EasyUpdate.getUpdateConfig(context);
+        XUpdate.get().setIUpdateHttpService(new OkHttpUpdateHttpServiceImpl(config.getTimeout(), config.isPostJson(), null));
+    }
+
+
+    //=============更新API==================//
 
     /**
      * 创建版本更新管理构建者

@@ -1,2 +1,3 @@
+include ':xupdate-downloader-aria'
 include ':xupdate-easy'
 include ':app'

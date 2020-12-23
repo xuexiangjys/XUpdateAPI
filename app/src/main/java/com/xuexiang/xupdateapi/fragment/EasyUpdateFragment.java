@@ -24,6 +24,7 @@ import android.widget.TextView;
 import com.xuexiang.xaop.annotation.MemoryCache;
 import com.xuexiang.xaop.annotation.SingleClick;
 import com.xuexiang.xpage.annotation.Page;
+import com.xuexiang.xupdate.aria.AriaDownloader;
 import com.xuexiang.xupdate.easy.EasyUpdate;
 import com.xuexiang.xupdate.entity.UpdateEntity;
 import com.xuexiang.xupdate.proxy.impl.DefaultUpdateChecker;
@@ -67,7 +68,7 @@ public class EasyUpdateFragment extends BaseFragment {
     }
 
     @SingleClick
-    @OnClick({R.id.btn_default, R.id.btn_auto, R.id.btn_force, R.id.btn_background_update, R.id.btn_update_entity, R.id.btn_custom_style, R.id.btn_custom_check})
+    @OnClick({R.id.btn_default, R.id.btn_auto, R.id.btn_force, R.id.btn_background_update, R.id.btn_update_entity, R.id.btn_custom_style, R.id.btn_custom_check, R.id.btn_aria_download})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_default:
@@ -120,6 +121,12 @@ public class EasyUpdateFragment extends BaseFragment {
                             }
                         })
                         .update();
+                break;
+            case R.id.btn_aria_download:
+                EasyUpdate.create(getContext(), Constants.UPDATE_DEFAULT_URL)
+                        .updateHttpService(AriaDownloader.getUpdateHttpService(getContext()))
+                        .build()
+                        .update(getUpdateEntityFromAssets());
                 break;
             default:
                 break;

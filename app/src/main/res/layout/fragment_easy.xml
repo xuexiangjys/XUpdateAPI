@@ -93,7 +93,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="16dp">
+        android:paddingHorizontal="16dp"
+        android:paddingTop="16dp">
 
         <Button
             android:id="@+id/btn_custom_style"
@@ -109,6 +110,22 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="自定义版本检查（主动检查）" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <Button
+            android:id="@+id/btn_aria_download"
+            style="@style/Button.Blue.wrap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="使用Aria实现断点续传下载" />
 
 
     </LinearLayout>

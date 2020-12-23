@@ -92,9 +92,11 @@ dependencies {
     androidTestImplementation deps.runner
     androidTestImplementation deps.espresso.core
 
+    implementation 'com.github.xuexiangjys:XUpdate:2.0.6'
     implementation project(':xupdate-easy')
-    implementation 'com.github.xuexiangjys:XUpdate:2.0.5'
+    implementation project(':xupdate-downloader-aria')
 
+    implementation 'com.arialyy.aria:core:3.8.15'
     implementation deps.androidx.multidex
     //屏幕适配AutoSize
     implementation 'me.jessyan:autosize:1.1.2'

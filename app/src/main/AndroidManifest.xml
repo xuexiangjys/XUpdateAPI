@@ -5,6 +5,11 @@
 
     <!--进程杀死-->
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:name=".MyApp"
@@ -16,7 +21,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="adjustPan|stateHidden"
-        tools:ignore="LockedOrientationActivity">
+        tools:ignore="LockedOrientationActivity"
+        tools:replace="android:allowBackup">
 
         <activity
             android:name=".activity.MainActivity"

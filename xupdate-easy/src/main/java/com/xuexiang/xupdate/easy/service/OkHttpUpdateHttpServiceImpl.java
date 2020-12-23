@@ -15,7 +15,7 @@
  *
  */
 
-package com.xuexiang.xupdate.easy.init;
+package com.xuexiang.xupdate.easy.service;
 
 import androidx.annotation.NonNull;
 
@@ -51,19 +51,25 @@ public class OkHttpUpdateHttpServiceImpl implements IUpdateHttpService {
     private boolean mIsPostJson;
 
     /**
+     * 下载代理
+     */
+    private IDownloadServiceProxy mDownloadProxy;
+
+    /**
      * 构造方法
      */
     public OkHttpUpdateHttpServiceImpl() {
-        this(true);
+        this(true, null);
     }
 
     /**
      * 构造方法
      *
      * @param isPostJson 是否使用json
+     * @param proxy      下载服务代理
      */
-    public OkHttpUpdateHttpServiceImpl(boolean isPostJson) {
-        this(20000L, isPostJson);
+    public OkHttpUpdateHttpServiceImpl(boolean isPostJson, IDownloadServiceProxy proxy) {
+        this(20000L, isPostJson, proxy);
     }
 
     /**
@@ -71,9 +77,11 @@ public class OkHttpUpdateHttpServiceImpl implements IUpdateHttpService {
      *
      * @param timeout    请求超时响应时间
      * @param isPostJson 是否使用json
+     * @param proxy      下载服务代理
      */
-    public OkHttpUpdateHttpServiceImpl(long timeout, boolean isPostJson) {
+    public OkHttpUpdateHttpServiceImpl(long timeout, boolean isPostJson, IDownloadServiceProxy proxy) {
         mIsPostJson = isPostJson;
+        mDownloadProxy = proxy;
         OkHttpUtils.initClient(new OkHttpClient.Builder()
                 .connectTimeout(timeout, TimeUnit.MILLISECONDS)
                 .readTimeout(timeout, TimeUnit.MILLISECONDS)
@@ -132,37 +140,45 @@ public class OkHttpUpdateHttpServiceImpl implements IUpdateHttpService {
 
     @Override
     public void download(@NonNull String url, @NonNull String path, @NonNull String fileName, final @NonNull IUpdateHttpService.DownloadCallback callback) {
-        OkHttpUtils.get()
-                .url(url)
-                .tag(url)
-                .build()
-                .execute(new FileCallBack(path, fileName) {
-                    @Override
-                    public void inProgress(float progress, long total, int id) {
-                        callback.onProgress(progress, total);
-                    }
+        if (mDownloadProxy != null) {
+            mDownloadProxy.download(url, path, fileName, callback);
+        } else {
+            OkHttpUtils.get()
+                    .url(url)
+                    .tag(url)
+                    .build()
+                    .execute(new FileCallBack(path, fileName) {
+                        @Override
+                        public void inProgress(float progress, long total, int id) {
+                            callback.onProgress(progress, total);
+                        }
 
-                    @Override
-                    public void onError(Call call, Exception e, int id) {
-                        callback.onError(e);
-                    }
+                        @Override
+                        public void onError(Call call, Exception e, int id) {
+                            callback.onError(e);
+                        }
 
-                    @Override
-                    public void onResponse(File response, int id) {
-                        callback.onSuccess(response);
-                    }
+                        @Override
+                        public void onResponse(File response, int id) {
+                            callback.onSuccess(response);
+                        }
 
-                    @Override
-                    public void onBefore(Request request, int id) {
-                        super.onBefore(request, id);
-                        callback.onStart();
-                    }
-                });
+                        @Override
+                        public void onBefore(Request request, int id) {
+                            super.onBefore(request, id);
+                            callback.onStart();
+                        }
+                    });
+        }
     }
 
     @Override
     public void cancelDownload(@NonNull String url) {
-        OkHttpUtils.getInstance().cancelTag(url);
+        if (mDownloadProxy != null) {
+            mDownloadProxy.cancelDownload(url);
+        } else {
+            OkHttpUtils.getInstance().cancelTag(url);
+        }
     }
 
     private Map<String, String> transform(Map<String, Object> params) {
