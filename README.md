@@ -108,9 +108,9 @@ EasyUpdate主要提供了如下两个方法:
 
 * EasyUpdate.checkUpdate: 直接版本更新
 
-当然XUpdate的所有方法也都是支持的，具体可以参考[XUpdate的使用说明](https://github.com/xuexiangjys/XUpdate/wiki/%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8).
-
 具体使用参见 [EasyUpdateFragment](https://github.com/xuexiangjys/XUpdateAPI/blob/master/app/src/main/java/com/xuexiang/xupdateapi/fragment/EasyUpdateFragment.java)。
+
+当然XUpdate的所有方法也都是支持的，具体可以参考[XUpdate的使用说明](https://github.com/xuexiangjys/XUpdate/wiki/%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8).
 
 ## 混淆配置
 
@@ -119,7 +119,7 @@ EasyUpdate主要提供了如下两个方法:
 ```
 -keep class com.xuexiang.xupdate.entity.** { *; }
 
-// Note: if you use a custom API parser for parsing, you need to add confusion to your custom API entities. Here are the custom API entity obfuscation rules configured in this demo:
+//注意，如果你使用的是自定义Api解析器解析，还需要给你自定义Api实体配上混淆，如下是本demo中配置的自定义Api实体混淆规则：
 -keep class com.xuexiang.xupdatedemo.entity.** { *; }
 ```
 
