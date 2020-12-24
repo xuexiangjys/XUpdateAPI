@@ -93,8 +93,10 @@ dependencies {
     androidTestImplementation deps.espresso.core
 
     implementation 'com.github.xuexiangjys:XUpdate:2.0.6'
-    implementation project(':xupdate-easy')
-    implementation project(':xupdate-downloader-aria')
+//    implementation project(':xupdate-easy')
+//    implementation project(':xupdate-downloader-aria')
+    implementation 'com.github.xuexiangjys.XUpdateAPI:xupdate-easy:1.0.0'
+    implementation 'com.github.xuexiangjys.XUpdateAPI:xupdate-downloader-aria:1.0.0'
 
     implementation 'com.arialyy.aria:core:3.8.15'
     implementation deps.androidx.multidex
