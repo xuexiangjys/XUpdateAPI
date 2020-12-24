@@ -37,5 +37,6 @@ dependencies {
     implementation 'com.arialyy.aria:core:3.8.15'
     compileOnly project(':xupdate-easy')
     compileOnly 'com.github.xuexiangjys:XUpdate:2.0.6'
-
 }
+
+apply from: "../JitPackUpload.gradle"

@@ -22,6 +22,7 @@ import android.content.Context;
 
 import androidx.multidex.MultiDex;
 
+import com.xuexiang.xupdate.aria.AriaDownloader;
 import com.xuexiang.xupdate.easy.EasyUpdate;
 import com.xuexiang.xupdateapi.custom.CustomUpdateConfigProvider;
 import com.xuexiang.xupdateapi.utils.sdkinit.UMengInit;
@@ -65,6 +66,9 @@ public class MyApp extends Application {
         if (!MyApp.isDebug()) {
             UMengInit.init(this);
         }
+
+//        // 开启断点续传下载功能方法二
+//        AriaDownloader.enable(this);
     }
 
 

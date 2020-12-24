@@ -235,7 +235,6 @@ public class AriaDownloadServiceProxyImpl implements IDownloadServiceProxy, Down
         Aria.download(this).unRegister();
         TaskSchedulers.getInstance().unRegister(this);
         mCallback = null;
-        mContext = null;
     }
 
     private boolean isCurrentTask(DownloadTask task) {

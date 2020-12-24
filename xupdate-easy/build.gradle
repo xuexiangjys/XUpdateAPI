@@ -39,3 +39,5 @@ dependencies {
     compileOnly 'com.github.xuexiangjys:XUpdate:2.0.6'
     implementation 'com.zhy:okhttputils:2.6.2'
 }
+
+apply from: "../JitPackUpload.gradle"

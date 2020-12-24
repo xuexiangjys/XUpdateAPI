@@ -125,7 +125,7 @@ public final class EasyUpdate {
      * 开启下载代理功能【可实现断点续传下载】
      *
      * @param context 上下文
-     * @param proxy   下载服务代理
+     * @param proxy   下载服务代理, 实现自定义下载功能
      */
     public static void enableDownloadProxy(Context context, IDownloadServiceProxy proxy) {
         UpdateConfig config = EasyUpdate.getUpdateConfig(context);

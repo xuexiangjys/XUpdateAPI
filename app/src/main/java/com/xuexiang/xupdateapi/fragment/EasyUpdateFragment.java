@@ -124,6 +124,7 @@ public class EasyUpdateFragment extends BaseFragment {
                 break;
             case R.id.btn_aria_download:
                 EasyUpdate.create(getContext(), Constants.UPDATE_DEFAULT_URL)
+                        // 开启断点续传下载功能方法三
                         .updateHttpService(AriaDownloader.getUpdateHttpService(getContext()))
                         .build()
                         .update(getUpdateEntityFromAssets());

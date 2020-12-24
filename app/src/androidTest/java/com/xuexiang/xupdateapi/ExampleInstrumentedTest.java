@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.xuexiang.templateproject", appContext.getPackageName());
+        assertEquals("com.xuexiang.xupdateapi", appContext.getPackageName());
     }
 }

@@ -21,6 +21,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import com.xuexiang.xupdate.aria.AriaDownloadServiceProxyImpl;
 import com.xuexiang.xupdate.easy.config.IUpdateConfigProvider;
 import com.xuexiang.xupdate.easy.config.UpdateConfig;
 import com.xuexiang.xupdate.utils.UpdateUtils;
@@ -38,6 +39,8 @@ public class CustomUpdateConfigProvider implements IUpdateConfigProvider {
     public UpdateConfig getUpdateConfig(@NonNull Context context) {
         return UpdateConfig.create()
                 .setIsDebug(true)
+//                // 开启断点续传下载功能方法一
+//                .setDownloadServiceProxy(new AriaDownloadServiceProxyImpl(context))
                 .setParam("appKey", context.getPackageName())
                 .setParam("versionCode", UpdateUtils.getVersionCode(context));
     }

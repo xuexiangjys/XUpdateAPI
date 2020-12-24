@@ -45,7 +45,6 @@ public final class AriaDownloader {
         EasyUpdate.enableDownloadProxy(context, new AriaDownloadServiceProxyImpl(context));
     }
 
-
     /**
      * 获取版本更新网络请求服务API
      *
