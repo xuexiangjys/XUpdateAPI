@@ -38,9 +38,9 @@ allprojects {
 
 ```
    implementation 'com.github.xuexiangjys:XUpdate:2.0.6'
-   implementation 'com.github.xuexiangjys:XUpdateAPI:xupdate-easy:1.0.0'
+   implementation 'com.github.xuexiangjys.XUpdateAPI:xupdate-easy:1.0.0'
    // 如果需要使用断点续传下载功能的话添加该依赖（可选）
-   implementation 'com.github.xuexiangjys:XUpdateAPI:xupdate-downloader-aria:1.0.0'
+   implementation 'com.github.xuexiangjys.XUpdateAPI:xupdate-downloader-aria:1.0.0'
 ```
 
 3.自定义初始化配置（可选）
