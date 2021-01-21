@@ -80,6 +80,8 @@ EasyUpdate.create(getContext(), Constants.UPDATE_DEFAULT_URL)
         .updateHttpService(AriaDownloader.getUpdateHttpService(getContext()))
 ```
 
+***【注意】：在使用断点续传下载功能的时候，请务必设置md5值，否则将会导致升级异常。***
+
 ## 注意事项
 
 需要注意的是，在使用`EasyUpdate`的时候，务必保证服务器返回的json格式应包括如下内容：
