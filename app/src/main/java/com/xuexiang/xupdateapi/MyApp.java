@@ -61,11 +61,7 @@ public class MyApp extends Application {
      */
     private void initLibs() {
         XBasicLibInit.init(this);
-
-        //运营统计数据运行时不初始化
-        if (!MyApp.isDebug()) {
-            UMengInit.init(this);
-        }
+        UMengInit.init(this);
 
 //        // 开启断点续传下载功能方法二
 //        AriaDownloader.enable(this);
