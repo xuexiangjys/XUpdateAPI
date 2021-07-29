@@ -19,9 +19,9 @@ package com.xuexiang.xupdate.easy.service;
 
 import androidx.annotation.NonNull;
 
+import com.google.gson.Gson;
 import com.xuexiang.xupdate.logs.UpdateLog;
 import com.xuexiang.xupdate.proxy.IUpdateHttpService;
-import com.xuexiang.xupdate.utils.UpdateUtils;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.FileCallBack;
 import com.zhy.http.okhttp.callback.StringCallback;
@@ -115,7 +115,7 @@ public class OkHttpUpdateHttpServiceImpl implements IUpdateHttpService {
         if (mIsPostJson) {
             requestCall = OkHttpUtils.postString()
                     .url(url)
-                    .content(UpdateUtils.toJson(params))
+                    .content(toJson(params))
                     .mediaType(MediaType.parse("application/json; charset=utf-8"))
                     .build();
         } else {
@@ -189,5 +189,14 @@ public class OkHttpUpdateHttpServiceImpl implements IUpdateHttpService {
         return map;
     }
 
+    /**
+     * 把 单个指定类型的对象 转换为 JSON 字符串
+     *
+     * @param src 序列化的对象
+     * @return JSON 字符串
+     */
+    private static String toJson(Object src) {
+        return new Gson().toJson(src);
+    }
 
 }

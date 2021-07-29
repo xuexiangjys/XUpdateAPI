@@ -137,6 +137,11 @@ public class EasyUpdateFragment extends BaseFragment {
 
     @MemoryCache
     private UpdateEntity getUpdateEntityFromAssets() {
-        return new DefaultUpdateParser().parseJson(ResourceUtils.readStringFromAssert("update_test.json"));
+        try {
+            return new DefaultUpdateParser().parseJson(ResourceUtils.readStringFromAssert("update_test.json"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

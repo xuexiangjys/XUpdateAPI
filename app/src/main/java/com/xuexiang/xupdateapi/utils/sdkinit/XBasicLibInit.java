@@ -19,14 +19,13 @@ package com.xuexiang.xupdateapi.utils.sdkinit;
 
 import android.app.Application;
 
-import com.xuexiang.xupdateapi.MyApp;
-import com.xuexiang.xupdateapi.core.BaseActivity;
-import com.xuexiang.xupdateapi.utils.XToastUtils;
 import com.xuexiang.xaop.XAOP;
-import com.xuexiang.xpage.AppPageConfig;
 import com.xuexiang.xpage.PageConfig;
 import com.xuexiang.xrouter.launcher.XRouter;
 import com.xuexiang.xui.XUI;
+import com.xuexiang.xupdateapi.MyApp;
+import com.xuexiang.xupdateapi.core.BaseActivity;
+import com.xuexiang.xupdateapi.utils.XToastUtils;
 import com.xuexiang.xutil.XUtil;
 import com.xuexiang.xutil.common.StringUtils;
 
@@ -74,13 +73,7 @@ public final class XBasicLibInit {
      */
     private static void initXPage(Application application) {
         PageConfig.getInstance()
-                //页面注册
-                .setPageConfiguration(context -> {
-                    //自动注册页面,是编译时自动生成的，build一下就出来了
-                    return AppPageConfig.getInstance().getPages();
-                })
                 .debug(MyApp.isDebug() ? "PageLog" : null)
-                .enableWatcher(MyApp.isDebug())
                 .setContainActivityClazz(BaseActivity.class)
                 .init(application);
     }

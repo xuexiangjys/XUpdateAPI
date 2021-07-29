@@ -34,7 +34,7 @@ final class Utils {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
 
-    public static Application getApplicationByReflect() {
+    static Application getApplicationByReflect() {
         try {
             @SuppressLint("PrivateApi")
             Class<?> activityThread = Class.forName("android.app.ActivityThread");
@@ -64,7 +64,9 @@ final class Utils {
      * @param <T>
      * @return 类型强转结果
      */
-    public static <T> T cast(final Object object, Class<T> clazz) {
+    static <T> T cast(final Object object, Class<T> clazz) {
         return clazz != null && clazz.isInstance(object) ? (T) object : null;
     }
+
+
 }
