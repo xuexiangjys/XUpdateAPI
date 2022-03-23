@@ -36,7 +36,7 @@ allprojects {
 }
 ```
 
-2.然后在dependencies添加:
+2.然后在应用项目(一般是app)的 `build.gradle` 的 dependencies 添加:
 
 ```
    implementation 'com.github.xuexiangjys:XUpdate:2.0.9'
