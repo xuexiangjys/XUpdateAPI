@@ -92,7 +92,7 @@ dependencies {
     androidTestImplementation deps.runner
     androidTestImplementation deps.espresso.core
 
-    implementation 'com.github.xuexiangjys:XUpdate:2.1.1'
+    implementation 'com.github.xuexiangjys:XUpdate:2.1.2'
 //    implementation project(':xupdate-easy')
 //    implementation project(':xupdate-downloader-aria')
     implementation 'com.github.xuexiangjys.XUpdateAPI:xupdate-easy:1.0.1'

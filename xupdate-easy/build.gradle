@@ -36,7 +36,7 @@ dependencies {
     implementation deps.androidx.appcompat
     implementation deps.gson
     implementation deps.okhttp3
-    compileOnly 'com.github.xuexiangjys:XUpdate:2.1.1'
+    compileOnly 'com.github.xuexiangjys:XUpdate:2.1.2'
     implementation 'com.zhy:okhttputils:2.6.2'
 }
 
