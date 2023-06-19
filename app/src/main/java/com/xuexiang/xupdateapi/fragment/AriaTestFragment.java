@@ -55,7 +55,7 @@ public class AriaTestFragment extends BaseFragment implements DownloadTaskListen
 
     private static final String TAG = "Aria";
 
-    private static final String TEST_URL = "https://down.qq.com/qqweb/QQ_1/android_apk/Android_8.5.0.5025_537066738.apk";
+    private static final String TEST_URL = "https://downv6.qq.com/qqweb/QQ_1/android_apk/Android_8.9.35.10440_537153294_64.apk";
 
     @BindView(R.id.npb_progress)
     NumberProgressBar npbProgress;
